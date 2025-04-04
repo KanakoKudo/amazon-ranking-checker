@@ -27,7 +27,9 @@ jobs:
         run: python main.py
 
       - name: Upload CSV as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ranking-log
+  uses: actions/upload-artifact@v3
+  with:
+    name: ranking-log
+    path: ranking_log.csv
+
           path: ranking_log.csv
