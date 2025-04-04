@@ -26,8 +26,4 @@ jobs:
       - name: Run scraper
         run: python main.py
 
-      - name: Upload CSV as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ranking-log
-          path: ranking_log.csv
+
