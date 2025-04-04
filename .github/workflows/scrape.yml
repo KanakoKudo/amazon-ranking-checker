@@ -1,4 +1,5 @@
 name: Amazon Ranking Scraper
+# 修正トリガー用コメント
 
 on:
   schedule:
