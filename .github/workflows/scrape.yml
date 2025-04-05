@@ -20,11 +20,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install playwright
+          pip install playwright gspread google-auth
           playwright install chromium
 
       - name: Run scraper
         run: python main.py
+
+      - name: Write Google credentials from secrets
+        run: echo "${{ secrets.GOOGLE_CREDENTIALS }}" > creds.json
+
+      - name: Upload results to Google Sheets
+        run: python upload_to_sheets.py
 
       - name: Upload CSV as artifact
         uses: actions/upload-artifact@main
