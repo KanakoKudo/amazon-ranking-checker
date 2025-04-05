@@ -1,5 +1,3 @@
-# amazon_ranking_scraper/main.py
-
 from playwright.sync_api import sync_playwright
 from datetime import datetime
 import csv
@@ -24,13 +22,16 @@ with sync_playwright() as p:
     rows = []
     for name, url in products.items():
         try:
-            page.goto(url, timeout=30000)
-            page.wait_for_selector("#productDetails_detailBullets_sections1, #detailBulletsWrapper_feature_div", timeout=10000)
+            page.goto(url, timeout=60000)  # ページ読み込み60秒まで許容
+            page.wait_for_load_state("networkidle")  # JS含め全体が落ち着くまで待機
+            page.wait_for_selector(
+                "#productDetails_detailBullets_sections1, #detailBulletsWrapper_feature_div",
+                timeout=30000
+            )
 
             # ランキング情報を取得
             content = page.content()
             if "Amazonランキング" in content and "位" in content:
-                # 抽出用の工夫はここで調整可能
                 rank = page.locator("text=/.*Amazonランキング.*位/").first.text_content()
             else:
                 rank = "取得できず"
