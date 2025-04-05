@@ -33,7 +33,7 @@ jobs:
         run: python upload_to_sheets.py
 
       - name: Upload CSV as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@main
         with:
           name: ranking-log
           path: ./ranking_log.csv
