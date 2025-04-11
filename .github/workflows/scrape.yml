@@ -1,8 +1,8 @@
 name: Amazon Ranking Scraper
 
 on:
-  schedule:
-    - cron: "0 7,15,23 * * *"  # JSTの7時,15時,23時に実行（UTC基準）
+  # schedule:
+  #   - cron: "0 7,15,23 * * *"  # JSTの7時,15時,23時に実行（UTC基準）
   workflow_dispatch:
 
 jobs:
